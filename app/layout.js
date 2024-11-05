@@ -2,10 +2,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
-  SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
+  RedirectToSignIn
 } from '@clerk/nextjs'
 import { Header } from "@/components/header";
 
@@ -22,7 +21,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <SignedOut>
-            <SignInButton />
+            <RedirectToSignIn />
           </SignedOut>
           <SignedIn>
             <Header/>
