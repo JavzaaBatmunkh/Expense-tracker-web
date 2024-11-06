@@ -77,7 +77,6 @@ export default function Home() {
   const searchParams = useSearchParams()
   const [filterType, setFilterType] = useQueryState("filterType")
   const [categoryId, setCategoryId] = useQueryState("categoryId")
-  const [isPressed, setIsPressed]=useState( false)
 
   function loadList() {
     fetch("https://expense-tracker-service.vercel.app/categories")
@@ -265,7 +264,7 @@ export default function Home() {
             </RadioGroup>
             <p className='font-bold py-4'>Categories</p>
             {categories.map((category) => (
-              <div key={category.id} className="flex gap-2 mb-1">
+              <div key={category.id} className={`flex items-center rounded-md p-2 gap-2 mb-1 ${categoryId==category.id ? "bg-gray-300": ""}`}>
                 <Button onClick={() => setEditingCategory(category)} className="bg-slate-400">
                   <Pencil className='w-4' />
                 </Button>
@@ -273,8 +272,8 @@ export default function Home() {
                   <Trash2 className='w-4' />
                 </Button>
 
-                <div onClick={() => toggleCategoryId(category.id)} className="flex justify-between w-full">
-                  <div className='flex gap-2'>
+                <div onClick={() => toggleCategoryId(category.id)} className={`flex justify-between w-full `}>
+                  <div className="flex gap-2">
                     <CategoryIcon iconName={category.icon} color={category.color} />
                     {category.name}
                   </div>
