@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
 
 import {
@@ -56,16 +55,8 @@ const chartConfig = {
   },
 } 
 
-// const chartData1 = [
-//   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-//   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-//   { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-//   { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-//   { browser: "other", visitors: 190, fill: "var(--color-other)" },
-// ]
 
-
-export function ChartPie() {
+export function ChartPie({totalExpense}) {
   const[groupedCategories, setGroupedCategories]=React.useState([])
 
  const chartData = groupedCategories.map((cat,index) => {
@@ -131,7 +122,7 @@ export function ChartPie() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalExpense}
                         </tspan>
                         <tspan
                           x={viewBox.cx}

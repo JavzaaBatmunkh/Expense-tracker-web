@@ -10,7 +10,8 @@ export function Header() {
     return (
         <header className="flex justify-between items-center w-full px-[5%] py-2 ">
             <div className="flex gap-4"> 
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/dashboard">
+                Dashboard</Link>
                 <Link href="/">Records</Link>
             </div>
             <div className="flex gap-4 justify-center align-center h-[40px] ">

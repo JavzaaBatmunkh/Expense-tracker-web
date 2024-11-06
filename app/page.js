@@ -19,7 +19,6 @@ import {
 
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
@@ -33,11 +32,10 @@ import {
 } from "@/components/ui/card"
 
 import { Check, BadgeDollarSign, Bath, Bus, CarFront, ChartCandlestick, Cherry, Drama, FerrisWheel, Fuel, GraduationCap, HandCoins, Hospital, House, IceCreamCone, Laptop, Plane, Shirt, ShoppingCart, SmartphoneNfc, TentTree, TramFront, Utensils, Pencil, Trash2, ArrowBigRightDash } from "lucide-react";
-import { Sidebar } from "@/components/sidebar";
-import { Header } from "@/components/header";
 import { RecordDialog } from "@/components/recordDialog";
 import { Checkbox } from "@/components/ui/checkbox"
 import { useSearchParams, useRouter } from 'next/navigation'
+import { CurrencyDisplay } from '@/components/currency-format';
 
 const categoryIcons = [
   { name: "transportation", Icon: Bus },
@@ -79,6 +77,7 @@ export default function Home() {
   const searchParams = useSearchParams()
   const [filterType, setFilterType] = useQueryState("filterType")
   const [categoryId, setCategoryId] = useQueryState("categoryId")
+  const [isPressed, setIsPressed]=useState( false)
 
   function loadList() {
     fetch("https://expense-tracker-service.vercel.app/categories")
@@ -351,8 +350,10 @@ export default function Home() {
                       <p className='text-slate-500'>{transaction.time.split(':')[0]}:{transaction.time.split(':')[1]}</p>
                     </div>
                   </div>
-                  <div className='flex items-center gap-2'>
-                    {transaction.amount}
+                  <div className='flex items-center gap-2'> 
+                    <div className={transaction.type=="INCOME" ? "text-green-800": "text-red-700"}
+                    ><CurrencyDisplay amount={transaction.amount} /></div>      
+                    
                     <Button onClick={() => router.push(`?editing=${transaction.id}`)} className="bg-slate-400">
                       <Pencil className='w-4' />
                     </Button>
